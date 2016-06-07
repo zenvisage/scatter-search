@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scatter Search Toolpage</title>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <!-- MATERIALIZE -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/3e7e255aa9.js"></script>
+
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+
+    <!--Including StyleSheets-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!--Including d3-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <!--Including Script files-->
+    <script src="{{ url_for('static', filename='js/renderPlot.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main-script.js') }}"></script>
+
+
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper grey darken-4">
+        <a href="/" class="brand-logo center ">Zenvisage Scatter Search</a>
+        <ul class="left nav-list">
+            <li>
+                <a><i class="fa fa-table" aria-hidden="true"></i>Choose Dataset</a>
+            </li>
+        </ul>
+        <ul class="right nav-list">
+            <li><a href="sass.html"><i class="fa fa-info-circle" aria-hidden="true"></i>Help</a></li>
+            <li><a href="badges.html">Contributors</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="row" style="margin: 0; padding: 0"></div>
+<div class="row main-row">
+    <div class="col m3 pane grey lighten-3 colored-pane ">
+        <div class="pane-section container">
+            <div class="pane-section-title">
+                <h3 class="center-align">
+                    DataSet Settings
+                </h3>
+                <hr>
+            </div>
+            <div class="input-field pane-section-element">
+                <select onchange=" updateOptions(0,this.value)" ;>
+                    <option value="" disabled selected>Choose column</option>
+                    {% for column in dataset.column_names %}
+                        <option {% if loop.index0==0 %}selected{% endif %}
+                                value="{{ loop.index0 }}">{{ column }}</option>
+                    {% endfor %}
+                </select>
+                <label>X Axis</label>
+            </div>
+            <div class="input-field pane-section-element">
+                <select onchange="if (this.selectedIndex) updateOptions(1,this.value)" ;>
+                    <option value="" disabled selected>Choose column</option>
+                    {% for column in dataset.column_names %}
+                        <option {% if loop.index0==1 %}selected{% endif %}
+                                value="{{ loop.index0 }}">{{ column }}</option>
+                    {% endfor %}
+                </select>
+                <label>Y Axis</label>
+            </div>
+            <div class="input-field pane-section-element">
+                <select onchange="if (this.selectedIndex) updateOptions(2,this.value)" ;>
+                    <option value="" disabled selected>Choose column</option>
+                    {% for column in dataset.column_names %}
+                        <option {% if loop.index0==2 %}selected{% endif %}
+                                value="{{ loop.index0 }}">{{ column }}</option>
+                    {% endfor %}
+                </select>
+                <label>Z Axis (Category)</label>
+            </div>
+            <button id="update-dataset-settings"
+                    class="btn waves-effect waves-light disabled" onclick="
+                    updateRepresentativePlot();
+                    Materialize.toast('Updated', 1000);
+                    ">Update
+                <i class="material-icons right">send</i>
+            </button>
+            <div class="pane-section-title">
+                <h3 class="center-align">
+                    Algorithm
+                </h3>
+                <hr>
+            </div>
+            <form>
+                {% for algorithm in algorithms %}
+                    <input name="algorithms" type="radio" id="alg-{{ loop.index0 }}" value = "{{ algorithm }}" onchange = 'updateOptions(3,this.value)' {% if algorithm=='Naive Algorithm' %} checked {% endif %}/>
+                    <label for="alg-{{ loop.index0 }}"> {{ algorithm }}</label>
+                {% endfor %}
+            </form>
+
+        </div>
+    </div>
+
+    <div class="col m6  pane">
+        <div class="pane-section">
+            <div class="pane-section-title container">
+                <h3 class="center-align">
+                    Representative Plot
+                </h3>
+                <hr>
+            </div>
+
+            <svg id="main-chart" class="card">
+            </svg>
+            <div style="text-align: center">
+                <button class="waves-effect waves-light btn-large light-green" onclick="getResults();" style="margin: 40px;width:70%">Get
+                    Results <i class="material-icons right">bubble_chart</i>
+                </button>
+
+            </div>
+        </div>
+{#        <div class="pane-section results">#}
+{#            <div class="pane-section-title container">#}
+{#                <h3 class="center-align">#}
+{#                    Results#}
+{#                </h3>#}
+{#                <hr>#}
+{#            </div>#}
+{#            {% for i in range(3) %}#}
+{#                <div class="card result-card">#}
+{#                    <div class="row" style="height: 100%">#}
+{#                        <div class="col s7" style="height: 100%">#}
+{#                            <svg class="result-svg">#}
+{##}
+{#                            </svg>#}
+{#                        </div>#}
+{#                        <div class="col s5 valign-wrapper" style="height: 100%">#}
+{##}
+{#                            <p class="light italic" style="padding: 20px">#}
+{#                                Nothing to show in here right now.#}
+{#                            </p>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{##}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+
+
+    </div>
+
+
+    <div class="col m3 pane grey lighten-3 colored-pane ">
+        <div class="pane-section container">
+            <div class="pane-section-title">
+                <h3 class="center-align">
+                    Drawing tools
+                </h3>
+                <hr>
+            </div>
+            <div class="buttons-for-drawing " style="text-align: center ">
+                <button id="new-polygon"
+                        class="waves-effect waves-light btn pane-section-element truncate blue lighten-1"
+                        onclick="drawPolygon()"><i
+                        class="material-icons left">add</i>New Polygon
+                </button>
+                <button id="undo"
+                        class="waves-effect waves-light btn pane-section-element truncate lime lighten-1 disabled"
+                        onclick="undoPolyPoints()"><i
+                        class="material-icons left">undo</i>Undo
+                </button>
+                <button id="green-polygon"
+                        class="waves-effect waves-light btn pane-section-element truncate disabled"
+                        onclick="changePolygonColorGreen()"><i
+                        class="material-icons left">cloud</i>Green Polygon
+                </button>
+                <button id="red-polygon"
+                        class="waves-effect waves-light btn pane-section-element truncate red accent-2 disabled"
+                        onclick="changePolygonColorRed()"><i
+                        class="material-icons left">cloud</i>Red Polygon
+                </button>
+            </div>
+
+
+            <div class="card teal">
+                <div class="draw-instructions card-content white-text left-align">
+
+
+                    <ul>
+                        <li><i class="material-icons" style="margin-right: 4px; font-size: 100%">mouse</i></i>
+                            To start drawing a polygon over the plot, hit New Polygon and click at the starting
+                            point on the plot.
+                        </li>
+                        <li><i class="material-icons" style="margin-right: 4px; font-size: 100%">mouse</i></i>To
+                            complete the current polygon, double left-click.
+                        </li>
+                        <li><i class="material-icons" style="margin-right: 4px; font-size: 100%">mouse</i>To
+                            delete a polygon, hover over it and right-click.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<footer class="page-footer grey darken-4" style="margin: 0; padding: 0">
+
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 Copyright Zenvisage
+            <a class="grey-text text-lighten-4 right" href="#!"><i style="margin-right: 6px" class="fa fa-github"
+                                                                   aria-hidden="true"></i>Find the project on github</a>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    function setDataset() {
+        currentData = {{ dataset|tojson }};
+    }
+</script>
+</body>
+</html>

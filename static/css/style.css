@@ -1,0 +1,126 @@
+.nav-wrapper {
+  z-index: 100; }
+  .nav-wrapper .brand-logo {
+    font-size: 180%;
+    font-family: 'Abel', sans-serif; }
+  .nav-wrapper .nav-list li a {
+    color: grey; }
+    .nav-wrapper .nav-list li a:visited {
+      color: grey; }
+    .nav-wrapper .nav-list li a:hover {
+      color: white; }
+    .nav-wrapper .nav-list li a:active {
+      color: white; }
+  .nav-wrapper .nav-list li a {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .nav-wrapper .nav-list li a i {
+      margin-right: 7px; }
+
+.main-row {
+  margin: 0;
+  padding: 0; }
+  .main-row .pane .pane-section .pane-section-title {
+    margin-bottom: 40px; }
+    .main-row .pane .pane-section .pane-section-title h1, .main-row .pane .pane-section .pane-section-title h2, .main-row .pane .pane-section .pane-section-title h3 {
+      color: indianred;
+      font-size: 150%; }
+  .main-row .pane .pane-section .btn {
+    margin-bottom: 40px; }
+  .main-row .pane .pane-section .draw-instructions ul li {
+    margin-bottom: 15px; }
+  .main-row .pane .pane-section .pane-section-element {
+    margin-bottom: 40px; }
+  .main-row .col {
+    margin: 0;
+    padding: 0; }
+
+.buttons-for-drawing a {
+  width: 90%; }
+
+.results .result-card {
+  padding: 0;
+  margin: 20px;
+  height: 300px;
+  width: 90%; }
+  .results .result-card .result-svg {
+    margin: auto;
+    height: 100%;
+    width: 100%; }
+
+/*NEW CSS*/
+#main-chart {
+  display: block;
+  margin: auto;
+  padding: 0;
+  height: 500px;
+  width: 90%; }
+
+#main {
+  background: rgba(255, 255, 255, 0.5);
+  overflow: auto; }
+
+.axis text {
+  font-size: 10px; }
+
+.axis-label {
+  font-size: 13px; }
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+  vector-effect: non-scaling-stroke;
+  z-index: 50; }
+
+circle {
+  color: dodgerblue;
+  fill: dodgerblue;
+  radius: 3; }
+
+.hexagon {
+  fill: white;
+  stroke: #000;
+  stroke-width: .5px; }
+
+.brush .extent {
+  stroke: black;
+  fill: green;
+  fill-opacity: .125;
+  shape-rendering: crispEdges; }
+
+.brushRed .extent2 {
+  stroke: black;
+  fill: red;
+  fill-opacity: .2;
+  shape-rendering: crispEdges; }
+
+.chart-title {
+  font-size: 16px; }
+
+.selected {
+  fill: red;
+  fill-opacity: 1; }
+
+.userPolygon {
+  /*z-index: 999;*/
+  fill: green;
+  fill-opacity: .2;
+  stroke: black;
+  /*border: solid black 5px;*/
+  shape-rendering: crispEdges; }
+
+.red-polygon {
+  fill: red; }
+
+.highlightPolygon {
+  fill: blue; }
+
+#toast-container {
+  top: auto;
+  right: auto;
+  bottom: 3%;
+  left: 7%; }
+
+/*# sourceMappingURL=style.css.map */

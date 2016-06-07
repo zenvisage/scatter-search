@@ -1,0 +1,197 @@
+@import "bourbon/bourbon";
+
+// Custom mixins
+@mixin linx($link, $visit, $hover, $active) {
+  a {
+    color: $link;
+    &:visited {
+      color: $visit;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active {
+      color: $active;
+    }
+  }
+}
+
+// Custom SASS
+.nav-wrapper {
+  z-index: 100;
+  .brand-logo {
+    font-size: 180%;
+    font-family: 'Abel', sans-serif;
+  }
+  .nav-list {
+    li {
+      @include linx(grey, grey, white, white);
+      a {
+
+        @include transition(all 0.2s ease-in-out);
+        i {
+          margin-right: 7px;
+        }
+
+      }
+    }
+
+  }
+}
+
+.main-row {
+  margin: 0;
+  padding: 0;
+
+  .pane {
+
+    .pane-section {
+      .pane-section-title {
+
+        margin-bottom: 40px;
+        h1, h2, h3 {
+          color: indianred;
+          font-size: 150%;
+        }
+      }
+      .btn {
+        margin-bottom: 40px;
+      }
+      .draw-instructions {
+        ul {
+          li {
+            margin-bottom: 15px;
+          }
+        }
+      }
+      .pane-section-element {
+        margin-bottom: 40px;
+        label {
+
+        }
+      }
+
+    }
+  }
+  .col {
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+.buttons-for-drawing {
+  a {
+    width: 90%;
+  }
+}
+
+.results {
+  //display:none;
+  .result-card {
+    padding: 0;
+    margin: 20px;
+    height: 300px;
+    width: 90%;
+    .result-svg {
+      margin: auto;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+// chart CSS
+/*NEW CSS*/
+//////////////////////////////////////////////////////////////////////
+
+#main-chart {
+
+  display: block;
+  margin: auto;
+  padding: 0;
+  height: 500px;
+  width: 90%;
+  //border: 1px solid black;
+}
+
+#main {
+  background: rgba(255, 255, 255, .5);
+  overflow: auto;
+}
+
+.axis text {
+  font-size: 10px;
+}
+
+.axis-label {
+  font-size: 13px;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+  vector-effect: non-scaling-stroke;
+  z-index: 50;
+}
+
+circle {
+  color: dodgerblue;
+  fill: dodgerblue;
+  radius: 3;
+}
+
+.hexagon {
+  fill: white;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.brush .extent {
+  stroke: black;
+  fill: green;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.brushRed .extent2 {
+  stroke: black;
+  fill: red;
+  fill-opacity: .2;
+  shape-rendering: crispEdges;
+}
+
+.chart-title {
+  font-size: 16px;
+}
+
+.selected {
+  fill: red;
+  fill-opacity: 1;
+}
+
+.userPolygon {
+  /*z-index: 999;*/
+  fill: green;
+  fill-opacity: .2;
+  stroke: black;
+  /*border: solid black 5px;*/
+  shape-rendering: crispEdges;
+
+}
+
+.red-polygon {
+  fill: red;
+}
+
+.highlightPolygon {
+  fill: blue;
+}
+
+#toast-container {
+  top: auto;
+  right: auto;
+  bottom: 3%;
+  left:7%;
+}

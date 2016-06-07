@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zenvisage Scatter Search</title>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <!-- MATERIALIZE -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/3e7e255aa9.js"></script>
+
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+
+    <!--Including StyleSheets-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index-styles.css') }}">
+</head>
+
+<body>
+<div class="main-image ">
+    <img src={{ url_for('static', filename='media/cat-scatter.jpg') }}>
+</div>
+<div class="title-box">
+    <h5 class="pre-title condensed thin">
+        ZENVISAGE
+    </h5>
+
+    <h1 class="title">
+        Scatter Search
+    </h1>
+</div>
+<p class="white-text thin" style="font-size: 140%">
+    Choose a dataset to begin with.
+</p>
+
+<select onchange=" console.log(this.value); window.location.href ='/load?dataset='+this.value;" ;>
+    <option style="color: white"  disabled selected></option>
+    {% for dataset in datasets %}
+        <option
+                value="{{ dataset }}">{{ dataset }}</option>
+    {% endfor %}
+</select>
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
+</body>
+</html>
