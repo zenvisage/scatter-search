@@ -49,7 +49,7 @@ Download the repository and then run pip to install all the dependencies.
 $ git clone https://github.com/zenvisage/scatter-search
 $ cd scatter-search
 $ pip install --upgrade pip
-$ pip install -r requirements.txt
+$ pip install --upgrade -r requirements.txt
 ```
 
 Then Run the Flask instance.
@@ -67,7 +67,7 @@ Then run the following commands on the command line:
 $ git clone https://github.com/zenvisage/scatter-search
 $ cd scatter-search
 $ python -m pip install --upgrade pip
-$ python -m pip install -r requirements.txt
+$ python -m pip install --upgrade -r requirements.txt
 $ python scatter-search.py
 ```
 
