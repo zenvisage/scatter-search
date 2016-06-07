@@ -89,14 +89,58 @@ Adding better, more sophisticated algorithms to the application is easy.
 
 Define your algorithm function in **utility/algorithms.py**.
 
-Here is an example of how the existing naive algorithm is implemented. Make sure that the dictionary you return follows the *exact* pattern as that is returned by the naive algorithm.
-```python
-def naive_algorithm():
-    return {}
+Here is an example of how the existing naive algorithm is implemented. You should be able to see the output as a console log when you click 'Get Results'.
 
-def complex_algorithm():
-    return {}
+```python
+def naive_algorithm(polygons, candidates_info, dataset):
+    """
+
+    :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}
+    :param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}
+    :param dataset: As described in loadSaveDataset.py
+    :return: Must return full dictionaries (same format as dataset) for the top k candidates
+    """
+    return {'comment': 'Hello from the Naive Algorithm'}
+
+
+def complex_algorithm(polygons, candidates_info, dataset):
+    """
+
+    :param polygons:
+    :param candidates_info:
+    :param dataset:
+    :return:
+    """
+    return {'comment': 'Hello from the Complex Algorithm'}
 ```
+
+The format of the dataset (as converted from .csv in the loadSaveDataset script) looks like this:
+```python
+def get_data_dict(dataset_name, skip_header=0):
+    """
+    Function to get a python dictionary representation of a dataset.
+    Only CSVs are supported as of now.
+    TODO: Add pickling/depickling.
+    :param file_path:   str, required
+                        Eg: 'data/iris.csv'
+    :param skip_header: int, optional
+                        Defaults to 0, otherwise skips the given number of rows
+                        Using the last skipped row as column names
+    :return:    A python dictionary
+                {
+                    dataset_name: str,
+                    column_names:[str],
+                    data: [[row1_val1, row1_val2,...],...],
+                    cols: int,
+                    rows: int,
+                    loaded_from_pickle: bool
+                }
+                or if an exception was thrown:
+                {
+                    error: str
+                }
+    """
+```python
 
 Add your algorithm name and function to the mapping dictionary.
 ```python
