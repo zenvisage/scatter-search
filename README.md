@@ -81,7 +81,17 @@ As of now, only .csv and .txt are supported, but incase we'd like to include oth
 
 The app uses Pickle to load and save datasets (in the form of python dictionaries). It's possible to compute and add more information to the dataset *before* saving the dictionary, to help improve performance the next time the dataset is used.
 Also depickling instead of reading the .csv helps load datasets much faster.
-
+```python
+def index_data(data_dict):
+    """
+    This function might be used to index the data dictionary to be more useful
+    in sophisticated algorithms.
+    Note: In case the file is loaded as pickle, you shouldn't be calling this function.
+    :param data_dict: dict, required
+    :return: Indexed dictionary
+    """
+    return data_dict
+```
 **More information about this section soon**
 
 ### Extending: Adding algorithms
