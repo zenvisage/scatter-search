@@ -31,6 +31,7 @@ Scatter Search uses a number of open source projects and modules to work properl
 * [Numpy] - for computation 
 * [Pickle] - a python module for object serialization
 * [matplotlib] - for its Path.contains_points goodness
+* [hopscotch] - An amazing framework to add product tours to their pages.
 * [jQuery] - duh
 
 And of course Scatter Search itself is open source with a [public repository][scattersearch]
@@ -73,6 +74,8 @@ $ python scatter-search.py
 ### Adding more datasets
 To add a new dataset file, just add the file to the data/ folder.
 As of now, only .csv and .txt are supported, but incase we'd like to include other formats, it's an easy update.
+
+**Note:** The included datasets - iris, test, and diabetic_data represent three scenarios. Test wouldn't work because it has just one trivial row. Diabetic_data would be extremely slow and is not fit for the tool. Iris is the small (150 rows only) and easy dataset that I used during development.
 
 ### Extending: Adding indexing methods
 
@@ -140,7 +143,8 @@ def get_data_dict(dataset_name, skip_header=0):
                     error: str
                 }
     """
-```python
+```
+Candidates info is pretty much a map between the candidates and the number of points they have in the dataset.
 
 Add your algorithm name and function to the mapping dictionary.
 ```python
@@ -154,6 +158,10 @@ That's it! Now you should access to the algorithm on the web application.
 
 ### Todos
 
+ - Implement naive algorithm
+ - Add Results section (also provide a way to control number of top ranks)
+ - Use Pickle to optimize load time
+ - Use hopscotch to provide page tour
  - Update pending sections.
  - Add Usage section.
  - Add support for using multiple algorithms at once.
@@ -173,5 +181,6 @@ MIT
    [numpy]: http://www.numpy.org/
    [pickle]:https://docs.python.org/3/library/pickle.html
    [jQuery]: <http://jquery.com>
+   [hopscotch]: https://github.com/linkedin/hopscotch
    [scattersearch]: https://github.com/zenvisage/scatter-search
    [researchpaper]:http://web.engr.illinois.edu/~tsiddiq2/doc/zenvisage.pdf
