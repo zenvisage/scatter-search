@@ -21,17 +21,19 @@
 .main-row {
   margin: 0;
   padding: 0; }
-  .main-row .pane .pane-section .pane-section-title {
-    margin-bottom: 40px; }
-    .main-row .pane .pane-section .pane-section-title h1, .main-row .pane .pane-section .pane-section-title h2, .main-row .pane .pane-section .pane-section-title h3 {
-      color: indianred;
-      font-size: 150%; }
-  .main-row .pane .pane-section .btn {
-    margin-bottom: 40px; }
-  .main-row .pane .pane-section .draw-instructions ul li {
-    margin-bottom: 15px; }
-  .main-row .pane .pane-section .pane-section-element {
-    margin-bottom: 40px; }
+  .main-row .pane {
+    min-height: calc(100vh - 14px); }
+    .main-row .pane .pane-section .pane-section-title {
+      margin-bottom: 40px; }
+      .main-row .pane .pane-section .pane-section-title h1, .main-row .pane .pane-section .pane-section-title h2, .main-row .pane .pane-section .pane-section-title h3 {
+        color: indianred;
+        font-size: 150%; }
+    .main-row .pane .pane-section .btn {
+      margin-bottom: 40px; }
+    .main-row .pane .pane-section .draw-instructions ul li {
+      margin-bottom: 15px; }
+    .main-row .pane .pane-section .pane-section-element {
+      margin-bottom: 40px; }
   .main-row .col {
     margin: 0;
     padding: 0; }

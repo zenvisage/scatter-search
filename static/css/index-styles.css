@@ -1,63 +1,98 @@
-body {
-  background-color: black;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  box-orient: vertical;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
-  box-direction: normal;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-direction: column;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  box-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  align-items: center;
-  -ms-flex-align: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  box-pack: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  -o-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center; }
-  body .main-image img {
-    width: 40vw;
-    height: auto; }
-  body .title-box {
-    margin-top: -40px; }
-    body .title-box .pre-title {
-      color: white;
-      font-size: 120%;
-      margin: 0; }
-    body .title-box .title {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: white;
-      font-family: 'Abel', sans-serif; }
+/*
+Syntax error: Invalid CSS after "    eot": expected ")", was ":   "#{$file-pa..."
+        on line 22 of scss/bourbon/helpers/_font-source-declaration.scss
+        from line 28 of scss/bourbon/_bourbon.scss
+        from line 1 of scss/index-styles.scss
 
-.select-dropdown {
-  color: white;
-  font-weight: 200;
-  font-size: 150%;
-  background-color: black; }
+17:   $font-url) {
+18: 
+19:   $src: ();
+20: 
+21:   $formats-map: (
+22:     eot:   "#{$file-path}.eot?#iefix" format("embedded-opentype"),
+23:     woff2: "#{$file-path}.woff2" format("woff2"),
+24:     woff:  "#{$file-path}.woff" format("woff"),
+25:     ttf:   "#{$file-path}.ttf" format("truetype"),
+26:     svg:   "#{$file-path}.svg##{$font-family}" format("svg")
+27:   );
 
-.caret {
-  color: white !important; }
-
-/*# sourceMappingURL=index-styles.css.map */
+Backtrace:
+scss/bourbon/helpers/_font-source-declaration.scss:22
+scss/bourbon/_bourbon.scss:28
+scss/index-styles.scss:1
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:1149:in `expected'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/lexer.rb:199:in `expected!'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:476:in `assert_tok'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:426:in `paren'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:411:in `special_fun'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:406:in `raw'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:330:in `funcall'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:319:in `ident'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:228:in `unary_not'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:228:in `unary_div'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:228:in `unary_minus'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:228:in `unary_plus'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:209:in `times_div_or_mod'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:209:in `plus_or_minus'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:209:in `relational'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:209:in `eq_or_neq'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:209:in `and_expr'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:209:in `or_expr'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:298:in `space'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:283:in `interpolation'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:246:in `expr'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:470:in `assert_expr'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/script/parser.rb:49:in `parse'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:1022:in `sass_script'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:514:in `variable'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:552:in `block_child'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:546:in `block_contents'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:535:in `block'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:211:in `function_directive'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:174:in `special_directive'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:146:in `directive'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:553:in `block_child'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:546:in `block_contents'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:82:in `stylesheet'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/scss/parser.rb:27:in `parse'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/engine.rb:342:in `_to_tree'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/engine.rb:274:in `to_tree'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:225:in `visit_import'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:227:in `block in visit_import'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:227:in `map'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:227:in `visit_import'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/tree/root_node.rb:20:in `render'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/engine.rb:315:in `_render'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/engine.rb:262:in `render'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:201:in `each'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:283:in `block in watch'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/multi_listener.rb:108:in `call'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/multi_listener.rb:108:in `on_change'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/multi_listener.rb:117:in `block in initialize_adapter'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/adapter.rb:198:in `call'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/adapter.rb:198:in `report_changes'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/adapter.rb:210:in `poll_changed_dirs'
+/Users/choudharya/.rvm/gems/ruby-1.9.3-p448/gems/sass-3.2.13/vendor/listen/lib/listen/adapters/darwin.rb:38:in `block in start'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"    eot\": expected \")\", was \":   \"#{$file-pa...\"\A         on line 22 of scss/bourbon/helpers/_font-source-declaration.scss\A         from line 28 of scss/bourbon/_bourbon.scss\A         from line 1 of scss/index-styles.scss\A \A 17:   $font-url) {\A 18: \A 19:   $src: ();\A 20: \A 21:   $formats-map: (\A 22:     eot:   \"#{$file-path}.eot?#iefix\" format(\"embedded-opentype\"),\A 23:     woff2: \"#{$file-path}.woff2\" format(\"woff2\"),\A 24:     woff:  \"#{$file-path}.woff\" format(\"woff\"),\A 25:     ttf:   \"#{$file-path}.ttf\" format(\"truetype\"),\A 26:     svg:   \"#{$file-path}.svg##{$font-family}\" format(\"svg\")\A 27:   );"; }

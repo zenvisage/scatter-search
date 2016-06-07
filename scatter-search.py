@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request, jsonify
 import json
-import utility.algorithms as alg
+from utility import algorithms as alg
 import utility.loadSaveDataset as loadSaveDataset
 from os import sys
 

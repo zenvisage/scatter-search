@@ -14,13 +14,13 @@ var currentData = {};
 
 function updatePaneHeight() {
     $('.colored-pane').each(function (index) {
-        $(this).css('height', $('.main-row').height());
+        $(this).css('height', $('body').height());
     });
 }
 
 $(document).ready(function () {
     $('select').material_select();
-    setTimeout(updatePaneHeight, 300);
+    // setTimeout(updatePaneHeight, 300);
     setDataset();
     updateRepresentativePlot();
 });
