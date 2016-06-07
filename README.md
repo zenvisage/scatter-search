@@ -100,7 +100,7 @@ def index_data(data_dict):
 
 Adding better, more sophisticated algorithms to the application is easy.
 
-Define your algorithm function in **utility/algorithms.py**.
+####Define your algorithm function in **utility/algorithms.py**.
 
 Here is an example of how the existing naive algorithm is implemented. You should be able to see the output as a console log when you click 'Get Results'.
 
@@ -169,7 +169,7 @@ def get_data_dict(dataset_name, skip_header=0):
     """
 ```
 
-Add your algorithm name and function to the mapping dictionary.
+####Add your algorithm name and function to the mapping dictionary.
 ```python
 EXISTING_ALGORITHMS = {
     'Naive Algorithm': naive_algorithm,
