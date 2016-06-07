@@ -92,11 +92,11 @@ def index_data(data_dict):
     """
     return data_dict
 ```
-**More information about this section soon**
+*Note: More information about this section soon*
 
 ### Extending: Adding algorithms
 
-**Note: This section is still in progress.**
+*Note: This section is still in progress.*
 
 Adding better, more sophisticated algorithms to the application is easy.
 
