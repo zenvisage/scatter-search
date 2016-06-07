@@ -126,8 +126,22 @@ def complex_algorithm(polygons, candidates_info, dataset):
     """
     return {'comment': 'Hello from the Complex Algorithm'}
 ```
+Any algorithm takes three parameters:
+- polygons
+- candidates_info
+- dataset
 
-The format of the dataset (as converted from .csv in the loadSaveDataset script) looks like this:
+**polygons** are formatted to easily fit into the matplotlib.PATH object (they form a closed loop).
+```python
+:param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}
+```
+
+**candidates_info** is pretty much a map between the candidates and the number of points they have in the dataset.
+```python
+:param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}
+```
+
+The format of the **dataset** (as converted from .csv in the loadSaveDataset script) looks like this:
 ```python
 def get_data_dict(dataset_name, skip_header=0):
     """
@@ -154,7 +168,6 @@ def get_data_dict(dataset_name, skip_header=0):
                 }
     """
 ```
-Candidates info is pretty much a map between the candidates and the number of points they have in the dataset.
 
 Add your algorithm name and function to the mapping dictionary.
 ```python
