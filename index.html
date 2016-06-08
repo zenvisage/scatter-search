@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Scatter-search by zenvisage</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Scatter-search</h1>
+        <p>An interactive exploration tool for large datasets</p>
+
+        <p class="view"><a href="https://github.com/zenvisage/scatter-search">View the Project on GitHub <small>zenvisage/scatter-search</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/zenvisage/scatter-search/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/zenvisage/scatter-search/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/zenvisage/scatter-search">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="zenvisage-scatter-search" class="anchor" href="#zenvisage-scatter-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Zenvisage Scatter Search</h1>
+
+<p>Scatter Search is a tool to explore large datasets by interacting with its scatter plot. The exploration reveals key insights about the dataset.</p>
+
+<p>This application should be viewed as an implementation of ongoing research under the project Zenvisage at the University of Illinois at Urbana Champaign led by <a href="http://web.engr.illinois.edu/%7Eadityagp/#">Prof. Aditya Parameswaran</a>.</p>
+
+<p>The in-progress research paper can be found <a href="http://web.engr.illinois.edu/%7Etsiddiq2/doc/zenvisage.pdf">here</a>. (<em>Note: Update link</em>)</p>
+
+<p><strong>In a nutshell, one should be able to</strong>:</p>
+
+<ul>
+<li>Select the columns one wants to explore (the XAxis, the YAxis and the ZAxis)</li>
+<li>Draw the region(s) one wants to explore on the representative plot</li>
+<li>Select the Ranking Algorithm</li>
+<li>Get a ranked set of scatter plots</li>
+</ul>
+
+<p><strong>Notes</strong>:</p>
+
+<ul>
+<li>The ZAxis represents the category, or the class, based on which the candidates are ranked.</li>
+<li>The region(s) are 'drawn' on the representative plot in the form of polygons.</li>
+<li>The ranking aims to find the order of prominence of candidates in the regions specified.</li>
+</ul>
+
+<h3>
+<a id="version" class="anchor" href="#version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version</h3>
+
+<p>1.0.0</p>
+
+<h3>
+<a id="tech" class="anchor" href="#tech" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tech</h3>
+
+<p>Scatter Search uses a number of open source projects and modules to work properly:</p>
+
+<ul>
+<li>
+<a href="https://d3js.org/">D3</a> - combines powerful visualization components and a data-driven approach to DOM manipulation</li>
+<li>
+<a href="http://materializecss.com/">Materialize</a> - A modern responsive front-end framework based on Material Design</li>
+<li>
+<a href="https://www.python.org/">Python 3.x</a> - evented I/O for the backend</li>
+<li>
+<a href="http://flask.pocoo.org/">Flask</a> - microframework for Python based on Werkzeug, Jinja 2 and good intentions</li>
+<li>
+<a href="http://www.numpy.org/">Numpy</a> - for computation </li>
+<li>
+<a href="https://docs.python.org/3/library/pickle.html">Pickle</a> - a python module for object serialization</li>
+<li>[matplotlib] - for its Path.contains_points goodness</li>
+<li>
+<a href="https://github.com/linkedin/hopscotch">hopscotch</a> - An amazing framework to add product tours to their pages.</li>
+<li>
+<a href="http://jquery.com">jQuery</a> - duh</li>
+</ul>
+
+<p>And of course Scatter Search itself is open source with a <a href="https://github.com/zenvisage/scatter-search">public repository</a>
+ on GitHub.</p>
+
+<h3>
+<a id="getting-started---installation" class="anchor" href="#getting-started---installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started - Installation</h3>
+
+<h4>
+<a id="os-x" class="anchor" href="#os-x" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OS X</h4>
+
+<p>Scatter Search requires <a href="https://www.python.org/">Python</a> 3.x to run.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ brew install python3</pre></div>
+
+<p>Download the repository and then run pip to install all the dependencies.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ git clone https://github.com/zenvisage/scatter-search
+$ <span class="pl-c1">cd</span> scatter-search
+$ pip install --upgrade pip
+$ pip install --upgrade -r requirements.txt</pre></div>
+
+<p>Then Run the Flask instance.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ python scatter-search.py</pre></div>
+
+<h4>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows</h4>
+
+<p>Refer to <a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a> for downloading and installing the latest version of Python 3.x</p>
+
+<p>Also make sure you have git installed and added to the PATH.</p>
+
+<p>Then run the following commands on the command line:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ git clone https://github.com/zenvisage/scatter-search
+$ <span class="pl-c1">cd</span> scatter-search
+$ python -m pip install --upgrade pip
+$ python -m pip install --upgrade -r requirements.txt
+$ python scatter-search.py</pre></div>
+
+<h3>
+<a id="adding-more-datasets" class="anchor" href="#adding-more-datasets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding more datasets</h3>
+
+<p>To add a new dataset file, just add the file to the data/ folder.
+As of now, only .csv and .txt are supported, but incase we'd like to include other formats, it's an easy update.</p>
+
+<p><strong>Note:</strong> The included datasets - iris, test, and diabetic_data represent three scenarios. Test wouldn't work because it has just one trivial row. Diabetic_data would be extremely slow and is not fit for the tool. Iris is the small (150 rows only) and easy dataset that I used during development.</p>
+
+<h3>
+<a id="extending-adding-indexing-methods" class="anchor" href="#extending-adding-indexing-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extending: Adding indexing methods</h3>
+
+<p>The app uses Pickle to load and save datasets (in the form of python dictionaries). It's possible to compute and add more information to the dataset <em>before</em> saving the dictionary, to help improve performance the next time the dataset is used.
+Also depickling instead of reading the .csv helps load datasets much faster.</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">index_data</span>(<span class="pl-smi">data_dict</span>):
+    <span class="pl-s"><span class="pl-pds">"""</span></span>
+<span class="pl-s">    This function might be used to index the data dictionary to be more useful</span>
+<span class="pl-s">    in sophisticated algorithms.</span>
+<span class="pl-s">    Note: In case the file is loaded as pickle, you shouldn't be calling this function.</span>
+<span class="pl-s">    :param data_dict: dict, required</span>
+<span class="pl-s">    :return: Indexed dictionary</span>
+<span class="pl-s">    <span class="pl-pds">"""</span></span>
+    <span class="pl-k">return</span> data_dict</pre></div>
+
+<p><em>Note: More information about this section soon</em></p>
+
+<h3>
+<a id="extending-adding-algorithms" class="anchor" href="#extending-adding-algorithms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extending: Adding algorithms</h3>
+
+<p><em>Note: This section is still in progress.</em></p>
+
+<p>Adding better, more sophisticated algorithms to the application is easy.</p>
+
+<h4>
+<a id="define-your-algorithm-function-in-utilityalgorithmspy" class="anchor" href="#define-your-algorithm-function-in-utilityalgorithmspy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Define your algorithm function in <strong>utility/algorithms.py</strong>.</h4>
+
+<p>Here is an example of how the existing naive algorithm is implemented. You should be able to see the output as a console log when you click 'Get Results'.</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">naive_algorithm</span>(<span class="pl-smi">polygons</span>, <span class="pl-smi">candidates_info</span>, <span class="pl-smi">dataset</span>):
+    <span class="pl-s"><span class="pl-pds">"""</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">    :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}</span>
+<span class="pl-s">    :param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}</span>
+<span class="pl-s">    :param dataset: As described in loadSaveDataset.py</span>
+<span class="pl-s">    :return: Must return full dictionaries (same format as dataset) for the top k candidates</span>
+<span class="pl-s">    <span class="pl-pds">"""</span></span>
+    <span class="pl-k">return</span> {<span class="pl-s"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Hello from the Naive Algorithm<span class="pl-pds">'</span></span>}
+
+
+<span class="pl-k">def</span> <span class="pl-en">complex_algorithm</span>(<span class="pl-smi">polygons</span>, <span class="pl-smi">candidates_info</span>, <span class="pl-smi">dataset</span>):
+    <span class="pl-s"><span class="pl-pds">"""</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">    :param polygons:</span>
+<span class="pl-s">    :param candidates_info:</span>
+<span class="pl-s">    :param dataset:</span>
+<span class="pl-s">    :return:</span>
+<span class="pl-s">    <span class="pl-pds">"""</span></span>
+    <span class="pl-k">return</span> {<span class="pl-s"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Hello from the Complex Algorithm<span class="pl-pds">'</span></span>}</pre></div>
+
+<p>Any algorithm takes three parameters:</p>
+
+<ul>
+<li>polygons</li>
+<li>candidates_info</li>
+<li>dataset</li>
+</ul>
+
+<p><strong>polygons</strong> are formatted to easily fit into the matplotlib.PATH object (they form a closed loop).</p>
+
+<div class="highlight highlight-source-python"><pre>:param polygons: {points: [[x1,y1],[x2,y2],<span class="pl-c1">...</span>], <span class="pl-c1">type</span>:<span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>}</pre></div>
+
+<p><strong>candidates_info</strong> is pretty much a map between the candidates and the number of points they have in the dataset.</p>
+
+<div class="highlight highlight-source-python"><pre>:param candidates_info: {<span class="pl-s"><span class="pl-pds">'</span>CandidateA<span class="pl-pds">'</span></span>:numOfOccurrencesInDataset, <span class="pl-s"><span class="pl-pds">'</span>CandidateB<span class="pl-pds">'</span></span><span class="pl-c1">...</span>}</pre></div>
+
+<p>The format of the <strong>dataset</strong> (as converted from .csv in the loadSaveDataset script) looks like this:</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">get_data_dict</span>(<span class="pl-smi">dataset_name</span>, <span class="pl-smi">skip_header</span><span class="pl-k">=</span><span class="pl-c1">0</span>):
+    <span class="pl-s"><span class="pl-pds">"""</span></span>
+<span class="pl-s">    Function to get a python dictionary representation of a dataset.</span>
+<span class="pl-s">    Only CSVs are supported as of now.</span>
+<span class="pl-s">    <span class="pl-k">TODO</span>: Add pickling/depickling.</span>
+<span class="pl-s">    :param file_path:   str, required</span>
+<span class="pl-s">                        Eg: 'data/iris.csv'</span>
+<span class="pl-s">    :param skip_header: int, optional</span>
+<span class="pl-s">                        Defaults to 0, otherwise skips the given number of rows</span>
+<span class="pl-s">                        Using the last skipped row as column names</span>
+<span class="pl-s">    :return:    A python dictionary</span>
+<span class="pl-s">                {</span>
+<span class="pl-s">                    dataset_name: str,</span>
+<span class="pl-s">                    column_names:[str],</span>
+<span class="pl-s">                    data: [[row1_val1, row1_val2,...],...],</span>
+<span class="pl-s">                    cols: int,</span>
+<span class="pl-s">                    rows: int,</span>
+<span class="pl-s">                    loaded_from_pickle: bool</span>
+<span class="pl-s">                }</span>
+<span class="pl-s">                or if an exception was thrown:</span>
+<span class="pl-s">                {</span>
+<span class="pl-s">                    error: str</span>
+<span class="pl-s">                }</span>
+<span class="pl-s">    <span class="pl-pds">"""</span></span></pre></div>
+
+<h4>
+<a id="add-your-algorithm-name-and-function-to-the-mapping-dictionary" class="anchor" href="#add-your-algorithm-name-and-function-to-the-mapping-dictionary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add your algorithm name and function to the mapping dictionary.</h4>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c1">EXISTING_ALGORITHMS</span> <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">'</span>Naive Algorithm<span class="pl-pds">'</span></span>: naive_algorithm,
+    <span class="pl-s"><span class="pl-pds">'</span>Complex Algorithm<span class="pl-pds">'</span></span>: complex_algorithm
+}</pre></div>
+
+<p>That's it! Now you should access to the algorithm on the web application.</p>
+
+<h3>
+<a id="todos" class="anchor" href="#todos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todos</h3>
+
+<ul>
+<li>Implement naive algorithm</li>
+<li>Add Results section (also provide a way to control number of top ranks)</li>
+<li>Use Pickle to optimize load time</li>
+<li>Use hopscotch to provide page tour</li>
+<li>Update pending sections.</li>
+<li>Add Usage section.</li>
+<li>Add support for using multiple algorithms at once.</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/zenvisage">zenvisage</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
