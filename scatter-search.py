@@ -13,7 +13,6 @@ current_dataset = {}
 @app.route('/')
 def index_page():
     dataset_list = loadSaveDataset.get_csv_list();
-    print(dataset_list)
     return render_template('index.html', datasets = dataset_list)
 
 @app.route('/load')
@@ -41,20 +40,12 @@ def set_dataset():
 @app.route('/getResults', methods=['POST'])
 def get_results():
     d = request.get_json()
-    # try:
-    candidates_info = alg.get_candidates_info(current_dataset['data'], d['options']['zAxis'])
     polygons = d['polygons']
-    # except Exception as e:
-    #     exc_type, exc_obj, exc_tb = sys.exc_info()
-    #     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)
-    #     print(exc_type, fname, exc_tb.tb_lineno)
-    return json.dumps(alg.EXISTING_ALGORITHMS[d['options']['algorithm']](polygons,candidates_info,current_dataset))
-
-@app.route('/renderDashboard')
-def renderDashboard():
-    global current_dataset
-    return jsonify(current_dataset)
-
+    options = d['options']
+    algorithm = options['algorithm']
+    candidates_info = alg.get_candidates_info(current_dataset['data'], options['zAxis'])
+    results = alg.EXISTING_ALGORITHMS[algorithm](polygons,candidates_info,current_dataset,options)
+    return render_template('results.html', results = results)
 
 if __name__ == '__main__':
     app.run()(debug=True)

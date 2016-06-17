@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scatter Search Toolpage</title>
 
     <!-- JQuery -->
@@ -51,7 +52,7 @@
 </nav>
 <div class="row" style="margin: 0; padding: 0"></div>
 <div class="row main-row">
-    <div class="col m3 pane grey lighten-3 colored-pane ">
+    <div class="col m3 s6 pane grey lighten-3 colored-pane ">
         <div class="pane-section container">
             <div class="pane-section-title">
                 <h3 class="center-align">
@@ -104,7 +105,9 @@
             </div>
             <form>
                 {% for algorithm in algorithms %}
-                    <input name="algorithms" type="radio" id="alg-{{ loop.index0 }}" value = "{{ algorithm }}" onchange = 'updateOptions(3,this.value)' {% if algorithm=='Naive Algorithm' %} checked {% endif %}/>
+                    <input name="algorithms" type="radio" id="alg-{{ loop.index0 }}" value="{{ algorithm }}"
+                           onchange='updateOptions(3,this.value)' {% if algorithm=='Naive Algorithm' %}
+                           checked {% endif %}/>
                     <label for="alg-{{ loop.index0 }}"> {{ algorithm }}</label>
                 {% endfor %}
             </form>
@@ -112,7 +115,7 @@
         </div>
     </div>
 
-    <div class="col m6  pane">
+    <div class="col m6 s6 pane">
         <div class="pane-section">
             <div class="pane-section-title container">
                 <h3 class="center-align">
@@ -124,46 +127,47 @@
             <svg id="main-chart" class="card">
             </svg>
             <div style="text-align: center">
-                <button class="waves-effect waves-light btn-large light-green" onclick="getResults();" style="margin: 40px;width:70%">Get
+                <button class="waves-effect waves-light btn-large light-green" onclick="getResults();"
+                        style="margin: 40px;width:70%">Get
                     Results <i class="material-icons right">bubble_chart</i>
                 </button>
 
             </div>
         </div>
-{#        <div class="pane-section results">#}
-{#            <div class="pane-section-title container">#}
-{#                <h3 class="center-align">#}
-{#                    Results#}
-{#                </h3>#}
-{#                <hr>#}
-{#            </div>#}
-{#            {% for i in range(3) %}#}
-{#                <div class="card result-card">#}
-{#                    <div class="row" style="height: 100%">#}
-{#                        <div class="col s7" style="height: 100%">#}
-{#                            <svg class="result-svg">#}
-{##}
-{#                            </svg>#}
-{#                        </div>#}
-{#                        <div class="col s5 valign-wrapper" style="height: 100%">#}
-{##}
-{#                            <p class="light italic" style="padding: 20px">#}
-{#                                Nothing to show in here right now.#}
-{#                            </p>#}
-{##}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{##}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        </div>#}
+        {#        <div class="pane-section results">#}
+        {#            <div class="pane-section-title container">#}
+        {#                <h3 class="center-align">#}
+        {#                    Results#}
+        {#                </h3>#}
+        {#                <hr>#}
+        {#            </div>#}
+        {#            {% for i in range(3) %}#}
+        {#                <div class="card result-card">#}
+        {#                    <div class="row" style="height: 100%">#}
+        {#                        <div class="col s7" style="height: 100%">#}
+        {#                            <svg class="result-svg">#}
+        {##}
+        {#                            </svg>#}
+        {#                        </div>#}
+        {#                        <div class="col s5 valign-wrapper" style="height: 100%">#}
+        {##}
+        {#                            <p class="light italic" style="padding: 20px">#}
+        {#                                Nothing to show in here right now.#}
+        {#                            </p>#}
+        {##}
+        {#                        </div>#}
+        {#                    </div>#}
+        {##}
+        {##}
+        {#                </div>#}
+        {#            {% endfor %}#}
+        {#        </div>#}
 
 
     </div>
 
 
-    <div class="col m3 pane grey lighten-3 colored-pane ">
+    <div class="col m3 s12 pane grey lighten-3 colored-pane ">
         <div class="pane-section container">
             <div class="pane-section-title">
                 <h3 class="center-align">

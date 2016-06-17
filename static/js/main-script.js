@@ -112,10 +112,12 @@ function getResults() {
         type: 'POST',
         contentType: 'application/json',
         url: '/getResults',
-        dataType: 'json',
+        dataType: 'html',
         data: JSON.stringify(data),
-        success: function (result) {
-            console.log(result)
+        success: function (results) {
+            console.log(results);
+            var w = window.open();
+            w.document.write(results);
         }, error: function (result) {
             console.log(result);
         }
