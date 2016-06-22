@@ -9,6 +9,7 @@ var scatter;
 var getBrushPoints;
 
 function drawScatter(options) {
+    console.log(options);
     var container, brushable, data, xlabel, ylabel, title, brush;
     var scaleMultiplier = 1.05;
     var infoToReturn = {};

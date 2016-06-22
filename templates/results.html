@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
     <!-- MATERIALIZE -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
 
     <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -28,10 +24,6 @@
     <!--Including StyleSheets-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!--Including d3-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
-    <!--Including Script files-->
-    <script src="{{ url_for('static', filename='js/renderPlot.js') }}"></script>
 
 </head>
 <body>
@@ -40,53 +32,55 @@
         <a href="/" class="brand-logo center ">Zenvisage Scatter Search</a>
     </div>
 </nav>
+
 <div class="results container">
-    <div class="row">
-        <div class="col s8 offset-s2 card">
-            <h4>
-                Results
-            </h4>
-
-            <p>
-                <b>Algorithm: </b> {{ results.algorithm }}
-                <br>
-                <b>Total points in Polygons</b>
-                <br>
-                {% for total_points in results.total_points_array %}
-                    <b>Polygon {{ loop.index }}: </b> {{ total_points }}
-                {% endfor %}
-            </p>
-        </div>
+    <div class="results-title">
+        <h3 class="center-align ">
+            Results
+        </h3>
+        <hr style="width:50%">
     </div>
-         <div class="pane-section results">
-                    <div class="pane-section-title container">
-                        <h3 class="center-align">
-                            Results
-                        </h3>
-                        <hr>
-                    </div>
-                    {% for i in range(3) %}
-                        <div class="card result-card">
-                            <div class="row" style="height: 100%">
-                                <div class="col s7" style="height: 100%">
-                                    <svg class="result-svg">
-
-                                    </svg>
-                                </div>
-                                <div class="col s5 valign-wrapper" style="height: 100%">
-
-                                    <p class="light italic" style="padding: 20px">
-                                        Nothing to show in here right now.
-                                    </p>
-
-                                </div>
-                            </div>
 
 
-                        </div>
-                    {% endfor %}
+    {% for result in results.result %}
+        <div class="card result-card">
+            <div class="row" style="height: 100%">
+                <div class="col s7" style="height: 100%">
+                    <svg class="result-svg" id="result-svg-{{ loop.index0 }}">
+                    </svg>
                 </div>
+                <div class="col s5 valign-wrapper" style="height: 100%">
 
+                    <p class="light italic" style="padding: 20px">
+                        <strong>Candidate:</strong> {{ result.dataset_name }}<br><br>
+                        <strong>Number of points inside all
+                            Polygons: </strong> {{ result.numOfPointsInPolygons }}<br><br>
+                        <strong>Total number of points: </strong> {{ result.numOfPoints }}<br><br>
+                        <strong>Score:</strong> {{ result.score }}
+                    </p>
+
+                </div>
+            </div>
+
+
+        </div>
+    {% endfor %}
 </div>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--Including d3-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+<!--Including Script files-->
+<script src="{{ url_for('static', filename='js/renderPlot.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main-script.js') }}"></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script>
+    function getResults() {
+        return {{ results|tojson }};
+    }
+</script>
 </body>
 </html>

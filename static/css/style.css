@@ -1,5 +1,6 @@
 .nav-wrapper {
-  z-index: 100; }
+  z-index: 100;
+  overflow: hidden; }
   .nav-wrapper .brand-logo {
     font-size: 180%;
     font-family: 'Abel', sans-serif; }
@@ -40,6 +41,26 @@
 .buttons-for-drawing a {
   width: 90%; }
 
+.footer-stuff a {
+  color: grey; }
+  .footer-stuff a:visited {
+    color: grey; }
+  .footer-stuff a:hover {
+    color: white; }
+  .footer-stuff a:active {
+    color: white; }
+.footer-stuff a {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .footer-stuff a i {
+    margin-right: 7px; }
+
+.results .results-title {
+  margin-bottom: 40px; }
+  .results .results-title h1, .results .results-title h2, .results .results-title h3 {
+    color: indianred;
+    font-size: 150%; }
 .results .result-card {
   padding: 0;
   margin: 20px;

@@ -72,7 +72,7 @@ def get_data_dict(dataset_name, skip_header=0):
 
     if (skip_header > 0):
         for i in range(0, no_of_columns):
-            col_names.append(dataset[0][i])
+            col_names.append(dataset[skip_header-1][i])
         dataset = dataset[skip_header:]
     else:
         for i in range(0, no_of_columns):

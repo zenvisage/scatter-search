@@ -16,24 +16,31 @@
   }
 }
 
+@mixin linkContainer() {
+
+  @include linx(grey, grey, white, white);
+  a {
+
+    @include transition(all 0.2s ease-in-out);
+    i {
+      margin-right: 7px;
+    }
+
+  }
+
+}
+
 // Custom SASS
 .nav-wrapper {
   z-index: 100;
+  overflow: hidden;
   .brand-logo {
     font-size: 180%;
     font-family: 'Abel', sans-serif;
   }
   .nav-list {
     li {
-      @include linx(grey, grey, white, white);
-      a {
-
-        @include transition(all 0.2s ease-in-out);
-        i {
-          margin-right: 7px;
-        }
-
-      }
+      @include linkContainer();
     }
 
   }
@@ -85,7 +92,18 @@
   }
 }
 
+.footer-stuff {
+  @include linkContainer();
+}
+
 .results {
+  .results-title {
+    margin-bottom: 40px;
+    h1, h2, h3 {
+      color: indianred;
+      font-size: 150%;
+    }
+  }
   //display:none;
   .result-card {
     padding: 0;
@@ -192,5 +210,5 @@ circle {
   top: auto;
   right: auto;
   bottom: 3%;
-  left:7%;
+  left: 7%;
 }

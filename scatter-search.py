@@ -45,6 +45,7 @@ def get_results():
     algorithm = options['algorithm']
     candidates_info = alg.get_candidates_info(current_dataset['data'], options['zAxis'])
     results = alg.EXISTING_ALGORITHMS[algorithm](polygons,candidates_info,current_dataset,options)
+    print(results)
     return render_template('results.html', results = results)
 
 if __name__ == '__main__':

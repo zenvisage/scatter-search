@@ -6,7 +6,11 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
     """
 
     :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}
-    :param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}
+    :param candidates_info: {'CandidateA':{
+                                                numOfPoints: 50,
+                                                data: [[row1_val1, row1_val2,...],...]
+                              },
+                             'CandidateB'...}
     :param dataset: As described in loadSaveDataset.py
     :param options: {algorithm: string, xAxis: index, yAxis: index, zAxis: index}
     :return: Must return full dictionaries (same format as dataset) for the top k candidates
@@ -15,7 +19,19 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
     y = options['yAxis']
     z = options['zAxis']
     data = dataset['data']
-    total_points_array = []
+    result = {}
+
+    for candidate in candidates_info:
+        result_element = {
+            'dataset_name': candidate,
+            'data': candidates_info[candidate]['data'],
+            'column_names': dataset['column_names'],
+            'numOfPoints': candidates_info[candidate]['numOfPoints'],
+            'numOfPointsInPolygons': 0,
+            'score': 0
+        }
+        result[candidate] = result_element
+
     for polygon in polygons:
         points = np.array(polygon['points'])
         path = mplPath.Path(points)
@@ -24,8 +40,17 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
             point = [row[x], row[y]]
             if path.contains_point(point):
                 total_points += 1
-        total_points_array.append(total_points)
-    return {'algorithm': 'Naive Algorithm', 'total_points_array': total_points_array}
+                result[row[z]]['numOfPointsInPolygons'] += 1
+
+    result_array = []
+
+    for candidate in result:
+        candidate = result[candidate]
+        candidate['score'] = candidate['numOfPointsInPolygons'] / candidate['numOfPoints']
+        result_array.append(candidate)
+
+    result_array = sorted(result_array, key=lambda k: k['score'], reverse=True)
+    return {'algorithm': 'Naive Algorithm', 'result': result_array, 'x': x,'y': y}
 
 
 def complex_algorithm(polygons, candidates_info, dataset, options):
@@ -38,7 +63,6 @@ def complex_algorithm(polygons, candidates_info, dataset, options):
     :return:
     """
     return {'algorithm': 'Complex Algorithm'}
-
 
 
 EXISTING_ALGORITHMS = {
@@ -58,7 +82,10 @@ def get_candidates_info(dataset, zAxis):
     for row in dataset:
         candidate = row[zAxis]
         if candidate in dictOfCandidates:
-            dictOfCandidates[candidate] += 1
+            dictOfCandidates[candidate]['numOfPoints'] += 1
+            dictOfCandidates[candidate]['data'].append(row)
         else:
-            dictOfCandidates[candidate] = 1
+            dictOfCandidates[candidate] = {}
+            dictOfCandidates[candidate]['numOfPoints'] = 1
+            dictOfCandidates[candidate]['data'] = [row]
     return dictOfCandidates
