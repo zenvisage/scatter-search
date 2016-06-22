@@ -186,7 +186,7 @@ Any algorithm takes four parameters:
                         }
 ```
 
-The format of the **dataset** (as converted from .csv in the loadSaveDataset script) looks like this:
+**dataset** is formatted like this (as converted from .csv in the loadSaveDataset script):
 ```python
 def get_data_dict(dataset_name, skip_header=0):
     """
@@ -213,7 +213,15 @@ def get_data_dict(dataset_name, skip_header=0):
                 }
     """
 ```
-
+**options** is a dictonary of all the user preferences:
+```python
+:param options: {
+                        algorithm: string, 
+                        xAxis: index, 
+                        yAxis: index, 
+                        zAxis: index
+                    }
+```
 ####Add your algorithm name and function to the mapping dictionary.
 ```python
 EXISTING_ALGORITHMS = {
@@ -248,8 +256,8 @@ MIT
    [flask]: http://flask.pocoo.org/
    [numpy]: http://www.numpy.org/
    [pickle]:https://docs.python.org/3/library/pickle.html
+   [matplotlib]:http://matplotlib.org/
    [jQuery]: <http://jquery.com>
    [hopscotch]: https://github.com/linkedin/hopscotch
    [scattersearch]: https://github.com/zenvisage/scatter-search
    [researchpaper]:http://web.engr.illinois.edu/~tsiddiq2/doc/zenvisage.pdf
-   [matplolib]:http://matplotlib.org/
