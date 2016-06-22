@@ -96,11 +96,10 @@ def index_data(data_dict):
 
 ### Extending: Adding algorithms
 
-*Note: This section is still in progress.*
 
 Adding better, more sophisticated algorithms to the application is easy.
 
-####Define your algorithm function in **utility/algorithms.py**.
+####Define your algorithm function in *utility/algorithms.py*.
 
 Here is an example of how the existing naive algorithm is implemented. You should be able to see the output as a console log when you click 'Get Results'.
 
@@ -253,4 +252,4 @@ MIT
    [hopscotch]: https://github.com/linkedin/hopscotch
    [scattersearch]: https://github.com/zenvisage/scatter-search
    [researchpaper]:http://web.engr.illinois.edu/~tsiddiq2/doc/zenvisage.pdf
-   [matplotlib] : http://matplotlib.org/
+   [matplolib]:http://matplotlib.org/
