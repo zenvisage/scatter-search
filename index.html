@@ -77,7 +77,8 @@
 <a href="http://www.numpy.org/">Numpy</a> - for computation </li>
 <li>
 <a href="https://docs.python.org/3/library/pickle.html">Pickle</a> - a python module for object serialization</li>
-<li>[matplotlib] - for its Path.contains_points goodness</li>
+<li>
+<a href="http://matplotlib.org/">matplotlib</a> - for its Path.contains_points goodness</li>
 <li>
 <a href="https://github.com/linkedin/hopscotch">hopscotch</a> - An amazing framework to add product tours to their pages.</li>
 <li>
@@ -152,24 +153,62 @@ Also depickling instead of reading the .csv helps load datasets much faster.</p>
 <h3>
 <a id="extending-adding-algorithms" class="anchor" href="#extending-adding-algorithms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extending: Adding algorithms</h3>
 
-<p><em>Note: This section is still in progress.</em></p>
-
 <p>Adding better, more sophisticated algorithms to the application is easy.</p>
 
 <h4>
-<a id="define-your-algorithm-function-in-utilityalgorithmspy" class="anchor" href="#define-your-algorithm-function-in-utilityalgorithmspy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Define your algorithm function in <strong>utility/algorithms.py</strong>.</h4>
+<a id="define-your-algorithm-function-in-utilityalgorithmspy" class="anchor" href="#define-your-algorithm-function-in-utilityalgorithmspy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Define your algorithm function in <em>utility/algorithms.py</em>.</h4>
 
 <p>Here is an example of how the existing naive algorithm is implemented. You should be able to see the output as a console log when you click 'Get Results'.</p>
 
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">naive_algorithm</span>(<span class="pl-smi">polygons</span>, <span class="pl-smi">candidates_info</span>, <span class="pl-smi">dataset</span>):
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">naive_algorithm</span>(<span class="pl-smi">polygons</span>, <span class="pl-smi">candidates_info</span>, <span class="pl-smi">dataset</span>, <span class="pl-smi">options</span>):
     <span class="pl-s"><span class="pl-pds">"""</span></span>
 <span class="pl-s"></span>
 <span class="pl-s">    :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}</span>
-<span class="pl-s">    :param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}</span>
+<span class="pl-s">    :param candidates_info: {'CandidateA':{</span>
+<span class="pl-s">                                                numOfPoints: 50,</span>
+<span class="pl-s">                                                data: [[row1_val1, row1_val2,...],...]</span>
+<span class="pl-s">                              },</span>
+<span class="pl-s">                             'CandidateB'...}</span>
 <span class="pl-s">    :param dataset: As described in loadSaveDataset.py</span>
+<span class="pl-s">    :param options: {algorithm: string, xAxis: index, yAxis: index, zAxis: index}</span>
 <span class="pl-s">    :return: Must return full dictionaries (same format as dataset) for the top k candidates</span>
 <span class="pl-s">    <span class="pl-pds">"""</span></span>
-    <span class="pl-k">return</span> {<span class="pl-s"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Hello from the Naive Algorithm<span class="pl-pds">'</span></span>}
+    x <span class="pl-k">=</span> options[<span class="pl-s"><span class="pl-pds">'</span>xAxis<span class="pl-pds">'</span></span>]
+    y <span class="pl-k">=</span> options[<span class="pl-s"><span class="pl-pds">'</span>yAxis<span class="pl-pds">'</span></span>]
+    z <span class="pl-k">=</span> options[<span class="pl-s"><span class="pl-pds">'</span>zAxis<span class="pl-pds">'</span></span>]
+    data <span class="pl-k">=</span> dataset[<span class="pl-s"><span class="pl-pds">'</span>data<span class="pl-pds">'</span></span>]
+    result <span class="pl-k">=</span> {}
+
+    <span class="pl-k">for</span> candidate <span class="pl-k">in</span> candidates_info:
+        result_element <span class="pl-k">=</span> {
+            <span class="pl-s"><span class="pl-pds">'</span>dataset_name<span class="pl-pds">'</span></span>: candidate,
+            <span class="pl-s"><span class="pl-pds">'</span>data<span class="pl-pds">'</span></span>: candidates_info[candidate][<span class="pl-s"><span class="pl-pds">'</span>data<span class="pl-pds">'</span></span>],
+            <span class="pl-s"><span class="pl-pds">'</span>column_names<span class="pl-pds">'</span></span>: dataset[<span class="pl-s"><span class="pl-pds">'</span>column_names<span class="pl-pds">'</span></span>],
+            <span class="pl-s"><span class="pl-pds">'</span>numOfPoints<span class="pl-pds">'</span></span>: candidates_info[candidate][<span class="pl-s"><span class="pl-pds">'</span>numOfPoints<span class="pl-pds">'</span></span>],
+            <span class="pl-s"><span class="pl-pds">'</span>numOfPointsInPolygons<span class="pl-pds">'</span></span>: <span class="pl-c1">0</span>,
+            <span class="pl-s"><span class="pl-pds">'</span>score<span class="pl-pds">'</span></span>: <span class="pl-c1">0</span>
+        }
+        result[candidate] <span class="pl-k">=</span> result_element
+
+    <span class="pl-k">for</span> polygon <span class="pl-k">in</span> polygons:
+        points <span class="pl-k">=</span> np.array(polygon[<span class="pl-s"><span class="pl-pds">'</span>points<span class="pl-pds">'</span></span>])
+        path <span class="pl-k">=</span> mplPath.Path(points)
+        total_points <span class="pl-k">=</span> <span class="pl-c1">0</span>
+        <span class="pl-k">for</span> row <span class="pl-k">in</span> data:
+            point <span class="pl-k">=</span> [row[x], row[y]]
+            <span class="pl-k">if</span> path.contains_point(point):
+                total_points <span class="pl-k">+=</span> <span class="pl-c1">1</span>
+                result[row[z]][<span class="pl-s"><span class="pl-pds">'</span>numOfPointsInPolygons<span class="pl-pds">'</span></span>] <span class="pl-k">+=</span> <span class="pl-c1">1</span>
+
+    result_array <span class="pl-k">=</span> []
+
+    <span class="pl-k">for</span> candidate <span class="pl-k">in</span> result:
+        candidate <span class="pl-k">=</span> result[candidate]
+        candidate[<span class="pl-s"><span class="pl-pds">'</span>score<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> candidate[<span class="pl-s"><span class="pl-pds">'</span>numOfPointsInPolygons<span class="pl-pds">'</span></span>] <span class="pl-k">/</span> candidate[<span class="pl-s"><span class="pl-pds">'</span>numOfPoints<span class="pl-pds">'</span></span>]
+        result_array.append(candidate)
+
+    result_array <span class="pl-k">=</span> <span class="pl-c1">sorted</span>(result_array, <span class="pl-v">key</span><span class="pl-k">=</span><span class="pl-k">lambda</span> <span class="pl-smi">k</span>: k[<span class="pl-s"><span class="pl-pds">'</span>score<span class="pl-pds">'</span></span>], <span class="pl-v">reverse</span><span class="pl-k">=</span><span class="pl-c1">True</span>)
+    <span class="pl-k">return</span> {<span class="pl-s"><span class="pl-pds">'</span>algorithm<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Naive Algorithm<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>: result_array, <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>: x,<span class="pl-s"><span class="pl-pds">'</span>y<span class="pl-pds">'</span></span>: y}
 
 
 <span class="pl-k">def</span> <span class="pl-en">complex_algorithm</span>(<span class="pl-smi">polygons</span>, <span class="pl-smi">candidates_info</span>, <span class="pl-smi">dataset</span>):
@@ -182,23 +221,29 @@ Also depickling instead of reading the .csv helps load datasets much faster.</p>
 <span class="pl-s">    <span class="pl-pds">"""</span></span>
     <span class="pl-k">return</span> {<span class="pl-s"><span class="pl-pds">'</span>comment<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Hello from the Complex Algorithm<span class="pl-pds">'</span></span>}</pre></div>
 
-<p>Any algorithm takes three parameters:</p>
+<p>Any algorithm takes four parameters:</p>
 
 <ul>
 <li>polygons</li>
 <li>candidates_info</li>
 <li>dataset</li>
+<li>options</li>
 </ul>
 
 <p><strong>polygons</strong> are formatted to easily fit into the matplotlib.PATH object (they form a closed loop).</p>
 
 <div class="highlight highlight-source-python"><pre>:param polygons: {points: [[x1,y1],[x2,y2],<span class="pl-c1">...</span>], <span class="pl-c1">type</span>:<span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>}</pre></div>
 
-<p><strong>candidates_info</strong> is pretty much a map between the candidates and the number of points they have in the dataset.</p>
+<p><strong>candidates_info</strong> is an exhaustive map of all candidates and their data points, number of total points:</p>
 
-<div class="highlight highlight-source-python"><pre>:param candidates_info: {<span class="pl-s"><span class="pl-pds">'</span>CandidateA<span class="pl-pds">'</span></span>:numOfOccurrencesInDataset, <span class="pl-s"><span class="pl-pds">'</span>CandidateB<span class="pl-pds">'</span></span><span class="pl-c1">...</span>}</pre></div>
+<div class="highlight highlight-source-python"><pre>:param candidates_info: { <span class="pl-s"><span class="pl-pds">'</span>CandidateA<span class="pl-pds">'</span></span>:{
+                                                numOfPoints: <span class="pl-c1">50</span>,
+                                                data: [[row1_val1, row1_val2,<span class="pl-c1">...</span>],<span class="pl-c1">...</span>]
+                              },
+                          <span class="pl-s"><span class="pl-pds">'</span>CandidateB<span class="pl-pds">'</span></span><span class="pl-c1">...</span>
+                        }</pre></div>
 
-<p>The format of the <strong>dataset</strong> (as converted from .csv in the loadSaveDataset script) looks like this:</p>
+<p><strong>dataset</strong> is formatted like this (as converted from .csv in the loadSaveDataset script):</p>
 
 <div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">get_data_dict</span>(<span class="pl-smi">dataset_name</span>, <span class="pl-smi">skip_header</span><span class="pl-k">=</span><span class="pl-c1">0</span>):
     <span class="pl-s"><span class="pl-pds">"""</span></span>
@@ -225,6 +270,15 @@ Also depickling instead of reading the .csv helps load datasets much faster.</p>
 <span class="pl-s">                }</span>
 <span class="pl-s">    <span class="pl-pds">"""</span></span></pre></div>
 
+<p><strong>options</strong> is a dictonary of all the user preferences:</p>
+
+<div class="highlight highlight-source-python"><pre>:param options: {
+                        algorithm: string, 
+                        xAxis: index, 
+                        yAxis: index, 
+                        zAxis: index
+                    }</pre></div>
+
 <h4>
 <a id="add-your-algorithm-name-and-function-to-the-mapping-dictionary" class="anchor" href="#add-your-algorithm-name-and-function-to-the-mapping-dictionary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add your algorithm name and function to the mapping dictionary.</h4>
 
@@ -239,8 +293,9 @@ Also depickling instead of reading the .csv helps load datasets much faster.</p>
 <a id="todos" class="anchor" href="#todos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todos</h3>
 
 <ul>
-<li>Implement naive algorithm</li>
-<li>Add Results section (also provide a way to control number of top ranks)</li>
+<li><del>Implement naive algorithm</del></li>
+<li>
+<del>Add Results section (also provide a way to control number of top ranks)</del> (Added Results Page)</li>
 <li>Use Pickle to optimize load time</li>
 <li>Use hopscotch to provide page tour</li>
 <li>Update pending sections.</li>
