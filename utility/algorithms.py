@@ -37,7 +37,7 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
         path = mplPath.Path(points)
         total_points = 0
         for row in data:
-            point = [row[x], row[y]]
+            point = [float(row[x]), float(row[y])]
             if path.contains_point(point):
                 total_points += 1
                 result[row[z]]['numOfPointsInPolygons'] += 1

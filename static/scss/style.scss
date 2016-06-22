@@ -48,6 +48,7 @@
 
 .main-row {
   margin: 0;
+  min-height:calc(100vh - 114px);
   .pane {
     //min-height: calc(100vh - 14px);
     padding-top: 30px;
