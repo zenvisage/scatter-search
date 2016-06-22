@@ -35,16 +35,16 @@
     <script src="{{ url_for('static', filename='js/main-script.js') }}"></script>
 
 </head>
-<body>
+<body onresize="updateRepresentativePlot()">
 <nav>
     <div class="nav-wrapper grey darken-4">
         <a href="/" class="brand-logo center ">Zenvisage Scatter Search</a>
-        <ul class="left nav-list">
+        <ul class="left nav-list hide-on-small-only">
             <li>
                 <a><i class="fa fa-table" aria-hidden="true"></i>Choose Dataset</a>
             </li>
         </ul>
-        <ul class="right nav-list">
+        <ul class="right nav-list hide-on-small-only">
             <li><a href="sass.html"><i class="fa fa-info-circle" aria-hidden="true"></i>Help</a></li>
             <li><a href="badges.html">Contributors</a></li>
         </ul>
@@ -52,7 +52,7 @@
 </nav>
 <div class="row" style="margin: 0; padding: 0"></div>
 <div class="row main-row">
-    <div class="col m3 s6 pane grey lighten-3 colored-pane ">
+    <div class="col l3 s12 pane grey lighten-3 colored-pane ">
         <div class="pane-section container">
             <div class="pane-section-title">
                 <h3 class="center-align">
@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="col m6 s6 pane">
+    <div class="col l6 s12 pane">
         <div class="pane-section">
             <div class="pane-section-title container">
                 <h3 class="center-align">
@@ -134,40 +134,12 @@
 
             </div>
         </div>
-        {#        <div class="pane-section results">#}
-        {#            <div class="pane-section-title container">#}
-        {#                <h3 class="center-align">#}
-        {#                    Results#}
-        {#                </h3>#}
-        {#                <hr>#}
-        {#            </div>#}
-        {#            {% for i in range(3) %}#}
-        {#                <div class="card result-card">#}
-        {#                    <div class="row" style="height: 100%">#}
-        {#                        <div class="col s7" style="height: 100%">#}
-        {#                            <svg class="result-svg">#}
-        {##}
-        {#                            </svg>#}
-        {#                        </div>#}
-        {#                        <div class="col s5 valign-wrapper" style="height: 100%">#}
-        {##}
-        {#                            <p class="light italic" style="padding: 20px">#}
-        {#                                Nothing to show in here right now.#}
-        {#                            </p>#}
-        {##}
-        {#                        </div>#}
-        {#                    </div>#}
-        {##}
-        {##}
-        {#                </div>#}
-        {#            {% endfor %}#}
-        {#        </div>#}
 
 
     </div>
 
 
-    <div class="col m3 s12 pane grey lighten-3 colored-pane ">
+    <div class="col l3 s12 pane grey lighten-3 colored-pane ">
         <div class="pane-section container">
             <div class="pane-section-title">
                 <h3 class="center-align">
@@ -229,8 +201,9 @@
     <div class="footer-copyright">
         <div class="container">
             © 2016 Copyright Zenvisage
-            <a class="grey-text text-lighten-4 right" href="#!"><i style="margin-right: 6px" class="fa fa-github"
-                                                                   aria-hidden="true"></i>Find the project on github</a>
+            <a class="grey-text text-lighten-4 right" href="https://github.com/zenvisage/scatter-search"><i style="margin-right: 8px; font-size:120%" class="fa fa-github"
+                                                                   aria-hidden="true"></i><span
+                    class="hide-on-small-only">Find the project on github</span></a>
         </div>
     </div>
 </footer>

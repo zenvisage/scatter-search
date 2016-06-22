@@ -13,14 +13,18 @@ currentRepresentativePlot = {}
 var currentData = {};
 
 function updatePaneHeight() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width <= 990){
+        return;
+    }
     $('.colored-pane').each(function (index) {
-        $(this).css('height', $('body').height());
+        $(this).css('height', $('.main-row').height());
     });
 }
 
 $(document).ready(function () {
     $('select').material_select();
-    // setTimeout(updatePaneHeight, 300);
+    setTimeout(updatePaneHeight, 300);
     setDataset();
     updateRepresentativePlot();
 });
@@ -118,6 +122,7 @@ function getResults() {
             console.log(results);
             var w = window.open();
             w.document.write(results);
+            w.console.log('in results window!');
         }, error: function (result) {
             console.log(result);
         }

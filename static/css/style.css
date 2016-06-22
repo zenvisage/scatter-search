@@ -19,10 +19,10 @@
       margin-right: 7px; }
 
 .main-row {
-  margin: 0;
-  padding: 0; }
+  margin: 0; }
   .main-row .pane {
-    min-height: calc(100vh - 14px); }
+    padding-top: 30px;
+    padding-bottom: 50px; }
     .main-row .pane .pane-section .pane-section-title {
       margin-bottom: 40px; }
       .main-row .pane .pane-section .pane-section-title h1, .main-row .pane .pane-section .pane-section-title h2, .main-row .pane .pane-section .pane-section-title h3 {
@@ -35,8 +35,7 @@
     .main-row .pane .pane-section .pane-section-element {
       margin-bottom: 40px; }
   .main-row .col {
-    margin: 0;
-    padding: 0; }
+    margin-left: 0; }
 
 .buttons-for-drawing a {
   width: 90%; }

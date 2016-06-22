@@ -300,6 +300,19 @@ var polygonpointsSet = [];
 var drawPolygonFlag = false;
 var polygonStack = [];
 
+// adding double tap to  d3 events
+d3.selection.prototype.dblTap = function (callback) {
+    var last = 0;
+    return this.each(function () {
+        d3.select(this).on("touchstart", function (e) {
+            if ((d3.event.timeStamp - last) < 300) {
+                return callback(e);
+            }
+            last = d3.event.timeStamp;
+        });
+    });
+};
+
 /**
  * Function to help draw polygons on d3 chart
  * @param svg
@@ -340,7 +353,16 @@ function clickPolyPoints(svg) {
             svg.on("mouseout", null);
             disableButton('undo');
             highlightPolygon();
-        })
+        });
+
+        svg.dblTap(function(){
+            svg.on("click", null);
+            svg.on("mousemove", null);
+            svg.on("contextmenu", null);
+            svg.on("mouseout", null);
+            disableButton('undo');
+            highlightPolygon();
+        });
     }
 
 }
