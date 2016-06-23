@@ -23,6 +23,7 @@
 
     <!-- Google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
 
     <!--Including StyleSheets-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index-styles.css') }}">
@@ -37,16 +38,16 @@
         ZENVISAGE
     </h5>
 
-    <h1 class="title">
+    <h1 class="title" style="font-size:3.8em">
         Scatter Search
     </h1>
 </div>
-<p class="white-text thin" style="font-size: 120%">
+<p class="white-text " style="font-size: 120%; font-family: 'Archivo Narrow', sans-serif; ">
     Choose a dataset to begin with.
 </p>
 
 <select onchange="window.location.href ='/load?dataset='+this.value;";>
-    <option style="color: white"  disabled selected></option>
+    <option style="color: white"  disabled selected>Available datasets</option>
     {% for dataset in datasets %}
         <option
                 value="{{ dataset }}">{{ dataset }}</option>
