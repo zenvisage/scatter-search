@@ -12,7 +12,12 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
                               },
                              'CandidateB'...}
     :param dataset: As described in loadSaveDataset.py
-    :param options: {algorithm: string, xAxis: index, yAxis: index, zAxis: index}
+    :param options: {
+                        algorithm: string,
+                        xAxis: index,
+                        yAxis: index,
+                        zAxis: index
+                    }
     :return: Must return full dictionaries (same format as dataset) for the top k candidates
     """
     x = options['xAxis']
