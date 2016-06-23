@@ -9,7 +9,6 @@ var scatter;
 var getBrushPoints;
 
 function drawScatter(options) {
-    console.log(options);
     var container, brushable, data, xlabel, ylabel, title, brush;
     var scaleMultiplier = 1.05;
     var infoToReturn = {};
@@ -81,18 +80,23 @@ function drawScatter(options) {
         return d['y'];
     };
 
+    var yMax = options.yMax? options.yMax : d3.max(data, yVals) * scaleMultiplier;
+    var xMax = options.xMax? options.xMax : d3.max(data, xVals) * scaleMultiplier;
+
     //setting y-scale to fit in the svg window
     var yScale = d3.scale.linear()
-        .domain([0, d3.max(data, yVals) * scaleMultiplier])
+        .domain([0, yMax])
         .range([height, 0]);
 
     //setting x-scale to fit in the svg window
     var xScale = d3.scale.linear()
-        .domain([0, d3.max(data, xVals) * scaleMultiplier])
+        .domain([0, xMax])
         .range([0, width]);
 
     infoToReturn.yScale = yScale;
     infoToReturn.xScale = xScale;
+    infoToReturn.yMax = yMax;
+    infoToReturn.xMax = xMax;
 
     // AXES:
     // to change tick-sizes: .ticksize(inner, outer) where inner are the normal ticks and outer are the end ticks
@@ -119,9 +123,9 @@ function drawScatter(options) {
         .attr("height", height + margin.top + margin.bottom)
         .append("g") //group that will house the plot
         .attr("id", "main-area")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")") //to center the g in the svg
-    //.call(zoom);
-        ;
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //to center the g in the svg
+
+
     //////////////////////////////////////////////////////GRID LINES
     var yAxisTickValues = yAxis.scale().ticks(yAxis.ticks());
     var xAxisTickValues = xAxis.scale().ticks(xAxis.ticks());
@@ -130,7 +134,7 @@ function drawScatter(options) {
     svg.append("g")
         .attr("class", "x axis")
         .selectAll("line")
-        .data(d3.range(0, d3.max(data, xVals) * scaleMultiplier, xAxisTickSize / 4))
+        .data(d3.range(0, xMax, xAxisTickSize / 4))
         .enter().append("line")
         .attr("x1", function (d) {
             return xScale(d);
@@ -144,7 +148,7 @@ function drawScatter(options) {
     svg.append("g")
         .attr("class", "y axis")
         .selectAll("line")
-        .data(d3.range(0, d3.max(data, yVals) * scaleMultiplier, yAxisTickSize / 4))
+        .data(d3.range(0, yMax, yAxisTickSize / 4))
         .enter().append("line")
         .attr("x1", 0)
         .attr("y1", function (d) {
@@ -176,22 +180,24 @@ function drawScatter(options) {
         .attr("height", height);
 
 
-    var hexColor = d3.scale.log()
-        .domain([0, 20])
-        .range(["white", "darkblue"])
-        .interpolate(d3.interpolateLab);
-
     var hexColorRed = d3.scale.linear()
-        .domain([0, 20])
-        .range(["white", "maroon"])
-        .interpolate(d3.interpolateLab);
+        .domain([0, data.length])
+        .range(["white", "maroon"]);
 
-    //var hexbin = d3.hexbin()
-    //    .size([width, height])
-    //    .radius(20);
+    var hexbin = d3.hexbin()
+        .size([width, height])
+        .radius(10);
 
 
-    drawScatterPlot();
+    var binLengths = hexbin(points).map(function (elem) {
+        return elem.length;
+    });
+
+    var hexColor = d3.scale.linear()
+        .domain([0, d3.max(binLengths)])
+        .range(["lightblue", "darkblue"]);
+
+    drawHexbin();
 
     // ------------------- DRAWING PLOTS FUNCTIONS -------------------------------------
 
@@ -215,8 +221,10 @@ function drawScatter(options) {
         //reference url for ease: https://github.com/mbostock/d3/wiki/Transitions#d3_ease
 
         hexbinPlot.transition()
-            .style("fill", function (d) {
+            .style("fill", function (d, i) {
+
                 return hexColor(d.length);
+                //return color[i];
             })
             .duration(900)
             .ease('sin');
@@ -356,7 +364,7 @@ function clickPolyPoints(svg) {
             highlightPolygon();
         });
 
-        svg.dblTap(function(){
+        svg.dblTap(function () {
             svg.on("click", null);
             svg.on("mousemove", null);
             svg.on("contextmenu", null);

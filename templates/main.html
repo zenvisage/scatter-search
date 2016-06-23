@@ -30,12 +30,13 @@
 
     <!--Including d3-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="http://d3js.org/d3.hexbin.v0.js"></script>
     <!--Including Script files-->
     <script src="{{ url_for('static', filename='js/renderPlot.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main-script.js') }}"></script>
 
 </head>
-<body onresize="updateRepresentativePlot()">
+<body>
 <nav>
     <div class="nav-wrapper grey darken-4">
         <a href="/" class="brand-logo center ">Zenvisage Scatter Search</a>

@@ -40,7 +40,11 @@
         </h3>
         <hr style="width:50%">
     </div>
-
+<div class="card-panel  grey lighten-3">
+    <strong>Algorithm Used:</strong> {{ results.algorithm }} <br><br>
+    <strong>Description:</strong> {{ results.description }} <br><br>
+    <strong>Candidates categorized by (Z-Axis):</strong> {{ results.category }} <br><br>
+</div>
 
     {% for result in results.result %}
         <div class="card result-card">
@@ -71,6 +75,7 @@
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <!--Including d3-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+<script src="http://d3js.org/d3.hexbin.v0.js"></script>
 <!--Including Script files-->
 <script src="{{ url_for('static', filename='js/renderPlot.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main-script.js') }}"></script>

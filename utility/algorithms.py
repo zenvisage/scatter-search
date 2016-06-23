@@ -20,6 +20,10 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
                     }
     :return: Must return full dictionaries (same format as dataset) for the top k candidates
     """
+    description = "This algorithm counts the number of occurences of each " \
+                  "candidate in the provided polygons and DOES NOT consider the total  " \
+                  "occurences of the candidate althroughout the chart."
+
     x = options['xAxis']
     y = options['yAxis']
     z = options['zAxis']
@@ -44,7 +48,67 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
         for row in data:
             point = [float(row[x]), float(row[y])]
             if path.contains_point(point):
-                total_points += 1
+                result[row[z]]['numOfPointsInPolygons'] += 1
+
+    result_array = []
+
+    for candidate in result:
+        candidate = result[candidate]
+        candidate['score'] = candidate['numOfPointsInPolygons']
+        result_array.append(candidate)
+
+    result_array = sorted(result_array, key=lambda k: k['score'], reverse=True)
+    return {'algorithm': 'Naive Algorithm', 'description' : description, 'category': dataset['column_names'][z], 'result': result_array, 'x': x,
+            'y': y}
+
+
+def naive_algorithm_normalized(polygons, candidates_info, dataset, options):
+    """
+
+    :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}
+    :param candidates_info: {'CandidateA':{
+                                                numOfPoints: 50,
+                                                data: [[row1_val1, row1_val2,...],...]
+                              },
+                             'CandidateB'...}
+    :param dataset: As described in loadSaveDataset.py
+    :param options: {
+                        algorithm: string,
+                        xAxis: index,
+                        yAxis: index,
+                        zAxis: index
+                    }
+    :return: Must return full dictionaries (same format as dataset) for the top k candidates
+    """
+
+    description = "This algorithm counts the number of occurences of each " \
+                  "candidate in the provided polygons and normalizes the count by dividing it by the  " \
+                  "occurences of the candidate althroughout the chart, respectively. Thus the score of" \
+                  " each candidate can be inferred as 'the fraction of themselves in the polygons'."
+    x = options['xAxis']
+    y = options['yAxis']
+    z = options['zAxis']
+    data = dataset['data']
+    result = {}
+
+    for candidate in candidates_info:
+        result_element = {
+            'dataset_name': candidate,
+            'data': candidates_info[candidate]['data'],
+            'column_names': dataset['column_names'],
+            'numOfPoints': candidates_info[candidate]['numOfPoints'],
+            'numOfPointsInPolygons': 0,
+            'score': 0
+        }
+        result[candidate] = result_element
+
+    for polygon in polygons:
+        points = np.array(polygon['points'])
+        path = mplPath.Path(points)
+        total_points = 0
+        for row in data:
+            point = [float(row[x]), float(row[y])]
+            if path.contains_point(point):
                 result[row[z]]['numOfPointsInPolygons'] += 1
 
     result_array = []
@@ -55,7 +119,9 @@ def naive_algorithm(polygons, candidates_info, dataset, options):
         result_array.append(candidate)
 
     result_array = sorted(result_array, key=lambda k: k['score'], reverse=True)
-    return {'algorithm': 'Naive Algorithm', 'result': result_array, 'x': x,'y': y}
+    return {'algorithm': 'Naive Algorithm Normalized', 'description' : description,'category': dataset['column_names'][z], 'result': result_array,
+            'x': x,
+            'y': y}
 
 
 def complex_algorithm(polygons, candidates_info, dataset, options):
@@ -72,6 +138,7 @@ def complex_algorithm(polygons, candidates_info, dataset, options):
 
 EXISTING_ALGORITHMS = {
     'Naive Algorithm': naive_algorithm,
+    'Naive Algorithm Normalized': naive_algorithm_normalized,
     'Complex Algorithm': complex_algorithm
 }
 

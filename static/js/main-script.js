@@ -71,10 +71,12 @@ function updateRepresentativePlot() {
 
 }
 
-function updateResults(results) {
+function updateResults(results, xMax, yMax) {
     for (var i = 0; i < results.result.length; i++) {
         var resultID = "#result-svg-" + i;
-        var options = formatDataset(resultID, results.result[i], results.x, results.y, currentOptions.zAxis)
+        var options = formatDataset(resultID, results.result[i], results.x, results.y, currentOptions.zAxis);
+        options.xMax = xMax;
+        options.yMax = yMax;
         drawScatter(options);
     }
 }
@@ -139,7 +141,7 @@ function getResults() {
             w.focus();
             setTimeout(function () {
                 var results = w.getResults();
-                w.updateResults(results);
+                w.updateResults(results, currentRepresentativePlot.xMax, currentRepresentativePlot.yMax);
             }, 1000);
 
             //var updateResultPage = function () {
