@@ -20,6 +20,10 @@
 body {
   background-color: black;
   min-height: 100vh;
+  width:100vw;
+  margin:0;
+  padding:0;
+  overflow-x: hidden;
   @include display(flex);
   @include flex-direction(column);
   @include align-items(center);
@@ -27,7 +31,7 @@ body {
   .main-image {
     //@include flex(0);
     img {
-      width: 40vw;
+      width: 400px;
       height: auto;
 
     }
@@ -55,9 +59,8 @@ body {
 
 .select-dropdown{
   color: white;
-  font-weight: 200;
+  //font-weight: 200;
   font-size: 150%;
-  background-color: black;
 }
 .caret{
   color: white !important;

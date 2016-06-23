@@ -7,7 +7,7 @@ var currentOptions = {
     zAxis: 2,
     algorithm: 'Naive Algorithm'
 };
-
+var resultsWindow;
 currentRepresentativePlot = {}
 
 var currentData = {};
@@ -27,6 +27,7 @@ $(document).ready(function () {
     setTimeout(updatePaneHeight, 300);
     setDataset();
     updateRepresentativePlot();
+
 });
 
 /**
@@ -124,9 +125,18 @@ function getResults() {
         dataType: 'html',
         data: JSON.stringify(data),
         success: function (results) {
-            var w = window.open();
-            w.document.write(results);
+            if (!resultsWindow) {
+                resultsWindow = window.open();
+            }
+            else {
+                resultsWindow.close();
+                resultsWindow = window.open();
+            }
 
+            var w = resultsWindow;
+
+            w.document.write(results);
+            w.focus();
             setTimeout(function () {
                 var results = w.getResults();
                 w.updateResults(results);
