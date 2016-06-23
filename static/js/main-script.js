@@ -27,6 +27,7 @@ $(document).ready(function () {
     setTimeout(updatePaneHeight, 300);
     setDataset();
     updateRepresentativePlot();
+    hopscotch.startTour(tour);
 
 });
 
