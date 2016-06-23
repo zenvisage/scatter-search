@@ -20,7 +20,8 @@
       margin-right: 7px; }
 
 .main-row {
-  margin: 0; }
+  margin: 0;
+  min-height: calc(100vh - 114px); }
   .main-row .pane {
     padding-top: 30px;
     padding-bottom: 50px; }

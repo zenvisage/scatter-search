@@ -71,6 +71,8 @@ $ python -m pip install --upgrade -r requirements.txt
 $ python scatter-search.py
 ```
 
+**Note**: To test the app on a mobile device, look at [ngrok].
+
 ### Adding more datasets
 To add a new dataset file, just add the file to the data/ folder.
 As of now, only .csv and .txt are supported, but incase we'd like to include other formats, it's an easy update.
@@ -96,24 +98,63 @@ def index_data(data_dict):
 
 ### Extending: Adding algorithms
 
-*Note: This section is still in progress.*
 
 Adding better, more sophisticated algorithms to the application is easy.
 
-####Define your algorithm function in **utility/algorithms.py**.
+####Step 1: Define your algorithm function in *utility/algorithms.py*.
 
 Here is an example of how the existing naive algorithm is implemented. You should be able to see the output as a console log when you click 'Get Results'.
 
 ```python
-def naive_algorithm(polygons, candidates_info, dataset):
+def naive_algorithm(polygons, candidates_info, dataset, options):
     """
 
     :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}
-    :param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}
+    :param candidates_info: {'CandidateA':{
+                                                numOfPoints: 50,
+                                                data: [[row1_val1, row1_val2,...],...]
+                              },
+                             'CandidateB'...}
     :param dataset: As described in loadSaveDataset.py
+    :param options: {algorithm: string, xAxis: index, yAxis: index, zAxis: index}
     :return: Must return full dictionaries (same format as dataset) for the top k candidates
     """
-    return {'comment': 'Hello from the Naive Algorithm'}
+    x = options['xAxis']
+    y = options['yAxis']
+    z = options['zAxis']
+    data = dataset['data']
+    result = {}
+
+    for candidate in candidates_info:
+        result_element = {
+            'dataset_name': candidate,
+            'data': candidates_info[candidate]['data'],
+            'column_names': dataset['column_names'],
+            'numOfPoints': candidates_info[candidate]['numOfPoints'],
+            'numOfPointsInPolygons': 0,
+            'score': 0
+        }
+        result[candidate] = result_element
+
+    for polygon in polygons:
+        points = np.array(polygon['points'])
+        path = mplPath.Path(points)
+        total_points = 0
+        for row in data:
+            point = [row[x], row[y]]
+            if path.contains_point(point):
+                total_points += 1
+                result[row[z]]['numOfPointsInPolygons'] += 1
+
+    result_array = []
+
+    for candidate in result:
+        candidate = result[candidate]
+        candidate['score'] = candidate['numOfPointsInPolygons'] / candidate['numOfPoints']
+        result_array.append(candidate)
+
+    result_array = sorted(result_array, key=lambda k: k['score'], reverse=True)
+    return {'algorithm': 'Naive Algorithm', 'result': result_array, 'x': x,'y': y}
 
 
 def complex_algorithm(polygons, candidates_info, dataset):
@@ -126,22 +167,28 @@ def complex_algorithm(polygons, candidates_info, dataset):
     """
     return {'comment': 'Hello from the Complex Algorithm'}
 ```
-Any algorithm takes three parameters:
+Any algorithm takes four parameters:
 - polygons
 - candidates_info
 - dataset
+- options
 
 **polygons** are formatted to easily fit into the matplotlib.PATH object (they form a closed loop).
 ```python
 :param polygons: {points: [[x1,y1],[x2,y2],...], type:'green'}
 ```
 
-**candidates_info** is pretty much a map between the candidates and the number of points they have in the dataset.
+**candidates_info** is an exhaustive map of all candidates and their data points, number of total points:
 ```python
-:param candidates_info: {'CandidateA':numOfOccurrencesInDataset, 'CandidateB'...}
+:param candidates_info: { 'CandidateA':{
+                                                numOfPoints: 50,
+                                                data: [[row1_val1, row1_val2,...],...]
+                              },
+                          'CandidateB'...
+                        }
 ```
 
-The format of the **dataset** (as converted from .csv in the loadSaveDataset script) looks like this:
+**dataset** is formatted like this (as converted from .csv in the loadSaveDataset script):
 ```python
 def get_data_dict(dataset_name, skip_header=0):
     """
@@ -168,8 +215,16 @@ def get_data_dict(dataset_name, skip_header=0):
                 }
     """
 ```
-
-####Add your algorithm name and function to the mapping dictionary.
+**options** is a dictonary of all the user preferences:
+```python
+:param options: {
+                        algorithm: string, 
+                        xAxis: index, 
+                        yAxis: index, 
+                        zAxis: index
+                    }
+```
+####Step 2: Add your algorithm name and function to the mapping dictionary.
 ```python
 EXISTING_ALGORITHMS = {
     'Naive Algorithm': naive_algorithm,
@@ -181,8 +236,8 @@ That's it! Now you should access to the algorithm on the web application.
 
 ### Todos
 
- - Implement naive algorithm
- - Add Results section (also provide a way to control number of top ranks)
+ - ~~Implement naive algorithm~~
+ - ~~Add Results section (also provide a way to control number of top ranks)~~ (Added Results Page)
  - Use Pickle to optimize load time
  - Use hopscotch to provide page tour
  - Update pending sections.
@@ -203,7 +258,9 @@ MIT
    [flask]: http://flask.pocoo.org/
    [numpy]: http://www.numpy.org/
    [pickle]:https://docs.python.org/3/library/pickle.html
+   [matplotlib]:http://matplotlib.org/
    [jQuery]: <http://jquery.com>
    [hopscotch]: https://github.com/linkedin/hopscotch
    [scattersearch]: https://github.com/zenvisage/scatter-search
    [researchpaper]:http://web.engr.illinois.edu/~tsiddiq2/doc/zenvisage.pdf
+   [ngrok]:https://ngrok.com/
