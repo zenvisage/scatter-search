@@ -13,8 +13,7 @@ var tour = {
             target: "help",
             title: "This tutorial is here to stay",
             content: "You can always watch the tutorial again by clicking on this button.",
-            placement: "left",
-            //yOffset: -20
+            placement: "left"
         },
         {
             target: "main-chart",
@@ -47,31 +46,10 @@ var tour = {
             title: "Tools for drawing",
             content: "These are explained in detail in the green box below."
         },
-        //{
-        //    target: "start-tour",
-        //    placement: "right",
-        //    title: "Starting your tour",
-        //    content: "After you've created your tour, pass it in to the startTour() method to start it.",
-        //    yOffset: -25
-        //},
-        //{
-        //    target: "basic-options",
-        //    placement: "left",
-        //    title: "Basic step options",
-        //    content: "These are the most basic step options: <b>target</b>, <b>placement</b>, <b>title</b>, and <b>content</b>. For some steps, they may be all you need.",
-        //    arrowOffset: 100,
-        //    yOffset: -80
-        //},
-        //{
-        //    target: "api-methods",
-        //    placement: "top",
-        //    title: "Hopscotch API methods",
-        //    content: "Control your tour programmatically using these methods.",
-        //},
         {
             target: "get-results",
             placement: "top",
-            title: "Answers to all your questions.",
+            title: "Results.",
             content: "And ofcourse, hit this button to get the results on a different page.",
         },
         {

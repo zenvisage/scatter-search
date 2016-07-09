@@ -83,6 +83,10 @@ def get_data_dict(dataset_name, skip_header=0):
     data_dict['data'] = dataset.tolist()
     data_dict['cols'] = no_of_columns
     data_dict['rows'] = no_of_rows
+
+    pickle_file_name = 'pickles/' + dataset_name + '.pickle'
+    with open(pickle_file_name, 'wb') as f:
+        pickle.dump(data_dict,f,pickle.HIGHEST_PROTOCOL,)
     data_dict['loaded_from_pickle'] = False
 
     return data_dict
